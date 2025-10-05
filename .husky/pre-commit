@@ -1,0 +1,3 @@
+echo " "
+npx lint-staged -c lint-staged.config.cjs
+echo " "
