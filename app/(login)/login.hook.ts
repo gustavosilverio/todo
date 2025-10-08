@@ -3,15 +3,11 @@ import { useForm } from "react-hook-form"
 import { loginSchema } from "./login.schema"
 import { useLoginUser } from "@/api/controllers/auth"
 import { toast } from "sonner"
-import { useSearchParams } from "next/navigation"
-import { useEffect } from "react"
 
 export const useLogin = () => {
-	const searchParams = useSearchParams()
-
 	const { mutateAsync: loginUserAsync, isPending: loginUserIsPending } = useLoginUser()
 
-	const { control, handleSubmit, reset } = useForm({
+	const { control, handleSubmit } = useForm({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
 			email: "",
@@ -27,15 +23,6 @@ export const useLogin = () => {
 
 		if (response.success) toast.success(`Hello ${response.data.userCredentials.name}!`)
 	})
-
-	useEffect(() => {
-		const queryEmail = searchParams.get("email")
-
-		if (queryEmail)
-			reset({
-				email: queryEmail,
-			})
-	}, [reset, searchParams])
 
 	return {
 		control,

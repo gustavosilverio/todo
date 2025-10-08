@@ -21,7 +21,7 @@ export const useRegister = () => {
 	const onSubmit = handleSubmit(async (values) => {
 		await createUserAsync({ ...values }).then(() => {
 			toast.success("User created successfully!")
-			redirect(`/?email=${values.email}`)
+			redirect("/")
 		})
 	})
 
