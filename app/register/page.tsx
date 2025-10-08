@@ -4,22 +4,29 @@ import { Container } from "@/components/Container"
 import { ControledInput } from "@/components/ControledInput/ControledInput"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useLogin } from "./login.hook"
+import { useRegister } from "./register.hook"
 
-export default function Home() {
-	const { control, onSubmit, loginUserIsPending } = useLogin()
+export default function Register() {
+	const { control, onSubmit, createUserIsPending } = useRegister()
 
 	return (
 		<Container.Centralized>
 			<div className="flex flex-col gap-6 w-full max-w-[340px]">
 				<div className="flex flex-col gap-2">
-					<h1 className="font-bold text-3xl">Sign in 🔑</h1>
-					<p>Just log in the platform.</p>
+					<h1 className="font-bold text-3xl">Sign up 🔑</h1>
+					<p>Just create your account.</p>
 				</div>
 				<form
 					className="flex flex-col gap-4"
 					onSubmit={onSubmit}
 				>
+					<ControledInput
+						control={control}
+						name="name"
+						label="Name"
+						placeholder="John Doe"
+					/>
+
 					<ControledInput
 						control={control}
 						name="email"
@@ -34,19 +41,26 @@ export default function Home() {
 						placeholder="123456"
 					/>
 
+					<ControledInput
+						control={control}
+						name="confirmPassword"
+						label="Confirm password"
+						placeholder="123456"
+					/>
+
 					<Button
 						type="submit"
-						loading={loginUserIsPending}
+						loading={createUserIsPending}
 					>
-						Login
+						Create
 					</Button>
 					<p className="text-sm">
-						Don&apos;t have an account?{" "}
+						Already have an account?{" "}
 						<Link
 							className="underline"
-							href="register"
+							href="/"
 						>
-							Sign up
+							Sign in
 						</Link>
 					</p>
 				</form>
