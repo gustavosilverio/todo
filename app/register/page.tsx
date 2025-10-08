@@ -31,7 +31,7 @@ export default function Register() {
 						control={control}
 						name="email"
 						label="Email"
-						placeholder="user@email.com"
+						placeholder="john@doe.com"
 					/>
 
 					<ControledInput

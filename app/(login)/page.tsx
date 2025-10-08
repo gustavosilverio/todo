@@ -24,7 +24,7 @@ export default function Home() {
 						control={control}
 						name="email"
 						label="Email"
-						placeholder="user@email.com"
+						placeholder="john@doe.com"
 					/>
 
 					<ControledInput
