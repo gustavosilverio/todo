@@ -7,7 +7,7 @@ import Link from "next/link"
 import { useRegister } from "./register.hook"
 
 export default function Register() {
-	const { control, onSubmit, createUserIsPending } = useRegister()
+	const { control, onSubmit, createUserIsPending, loginUserIsPending } = useRegister()
 
 	return (
 		<Container.Centralized>
@@ -50,7 +50,7 @@ export default function Register() {
 
 					<Button
 						type="submit"
-						loading={createUserIsPending}
+						loading={createUserIsPending || loginUserIsPending}
 					>
 						Create
 					</Button>
