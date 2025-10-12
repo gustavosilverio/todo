@@ -13,7 +13,7 @@ export const Providers = ({ children }: React.PropsWithChildren) => {
 		<ReduxProvider store={todoStore}>
 			<ThemeProvider
 				attribute="class"
-				defaultTheme="system"
+				defaultTheme="dark"
 				enableSystem
 			>
 				<QueryClientProvider client={queryClient}>

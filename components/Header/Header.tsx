@@ -2,11 +2,12 @@
 
 import { usePathname } from "next/navigation"
 import { Button } from "../ui/button"
-import { LogOut, Moon, Sun } from "lucide-react"
+import { LogOut, Moon } from "lucide-react"
 import { disconnectUser } from "@/lib/utils/auth"
 import { useReduxSelector } from "@/lib/hooks/useReduxSelector"
-import { Skeleton } from "../ui/skeleton"
 import { useTheme } from "next-themes"
+import { Themes } from "@/lib/utils/index.types"
+import { ICON_BY_THEME, THEME_CICLE } from "./Header.utils"
 
 export const Header = () => {
 	const userCredentials = useReduxSelector("credentials")
@@ -15,12 +16,14 @@ export const Header = () => {
 
 	const { theme, setTheme } = useTheme()
 
+	const handleChangeTheme = () => {
+		setTheme(THEME_CICLE[theme as Themes])
+	}
+
 	if (pathname !== "/todos") return
 
 	return (
-		<header className="flex items-center gap-4 w-dvw px-36 py-8 justify-end">
-			{!userCredentials ? <Skeleton className="w-[160px] h-5" /> : <p>{userCredentials.name}</p>}
-
+		<header className="flex items-center gap-2 w-dvw px-12 lg:px-36 py-8 justify-end">
 			<Button
 				variant="outline"
 				onClick={() => {
@@ -31,12 +34,11 @@ export const Header = () => {
 			</Button>
 
 			<Button
+				size="icon"
 				variant="ghost"
-				onClick={() => {
-					setTheme(theme === "dark" ? "light" : "dark")
-				}}
+				onClick={handleChangeTheme}
 			>
-				{theme === "dark" ? <Sun /> : <Moon />}
+				{ICON_BY_THEME[theme as Themes] || <Moon />}
 			</Button>
 		</header>
 	)

@@ -10,7 +10,7 @@ export const useTodos = () => {
 
 	const userCredentials = useReduxSelector("credentials")
 
-	const { data: todos, isLoading: getTodosByUserIdIsLoading } = useGetTodosByUserId({
+	const { data: todos, isPending: getTodosByUserIdIsPending } = useGetTodosByUserId({
 		userId: userCredentials?.id,
 	})
 
@@ -40,7 +40,7 @@ export const useTodos = () => {
 		enableDescription,
 		setEnableDescription,
 		todos: todos?.data,
-		getTodosByUserIdIsLoading,
+		getTodosByUserIdIsPending,
 		control,
 		onSubmit,
 		createTodoIsPending,

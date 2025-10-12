@@ -17,7 +17,7 @@ export default function Todos() {
 		enableDescription,
 		setEnableDescription,
 		todos,
-		getTodosByUserIdIsLoading,
+		getTodosByUserIdIsPending,
 		control,
 		onSubmit,
 		createTodoIsPending,
@@ -72,7 +72,7 @@ export default function Todos() {
 				</form>
 
 				<div className="flex flex-col gap-2">
-					{getTodosByUserIdIsLoading ? (
+					{getTodosByUserIdIsPending ? (
 						Array.from({ length: 3 }).map((_, i) => (
 							<Skeleton
 								className="w-full h-8"

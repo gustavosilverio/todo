@@ -7,3 +7,9 @@ export type ErrorResponse = {
 	data: null
 	error: string
 }
+
+export enum Themes {
+	System = "system",
+	Dark = "dark",
+	Light = "light",
+}

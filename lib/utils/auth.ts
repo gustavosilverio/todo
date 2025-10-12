@@ -7,7 +7,9 @@ import { api } from "../config/axios"
 import { revokeUser } from "@/api/controllers/auth"
 
 export const disconnectUser = async (toastDescription?: string, userId?: number) => {
-	revokeUser({ userId })
+	revokeUser({ userId }).then(() => {
+		api.defaults.headers.Authorization = ""
+	})
 
 	removeAllCookies()
 
@@ -16,8 +18,6 @@ export const disconnectUser = async (toastDescription?: string, userId?: number)
 			toastDescription,
 		})
 	)
-
-	api.defaults.headers.Authorization = ""
 
 	queryClient.clear()
 
