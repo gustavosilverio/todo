@@ -1,30 +1,30 @@
 "use client"
 
 import { useId } from "react"
-import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { ControledInputProps } from "./ControledInput.types"
 import { Controller, FieldValues } from "react-hook-form"
 import { ConditionalTransition } from "../ConditionalTransition"
+import { ControledTextareaProps } from "./ControledTextarea.types"
+import { Textarea } from "../ui/textarea"
 
-export const ControledInput = <TFieldValues extends FieldValues>({
+export const ControledTextarea = <TFieldValues extends FieldValues>({
 	label,
 	control,
 	name,
 	...props
-}: ControledInputProps<TFieldValues>) => {
+}: ControledTextareaProps<TFieldValues>) => {
 	const id = useId()
 
 	return (
 		<div className="flex flex-col gap-2 w-full">
-			{label && <Label htmlFor={id}>{label}</Label>}
+			<Label htmlFor={id}>{label}</Label>
 
 			<Controller
 				control={control}
 				name={name}
 				render={({ field, fieldState: { error } }) => (
 					<div className="flex flex-col gap-1">
-						<Input
+						<Textarea
 							id={id}
 							{...props}
 							{...field}

@@ -6,17 +6,24 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Toaster } from "sonner"
 import { Provider as ReduxProvider } from "react-redux"
 import { todoStore } from "@/lib/redux"
+import { ThemeProvider } from "next-themes"
 
 export const Providers = ({ children }: React.PropsWithChildren) => {
 	return (
 		<ReduxProvider store={todoStore}>
-			<QueryClientProvider client={queryClient}>
-				<Toaster position="top-right" />
+			<ThemeProvider
+				attribute="class"
+				defaultTheme="system"
+				enableSystem
+			>
+				<QueryClientProvider client={queryClient}>
+					<Toaster position="top-right" />
 
-				{children}
+					{children}
 
-				{process.env.NODE_ENV === "development" && <ReactQueryDevtools />}
-			</QueryClientProvider>
+					{process.env.NODE_ENV === "development" && <ReactQueryDevtools />}
+				</QueryClientProvider>
+			</ThemeProvider>
 		</ReduxProvider>
 	)
 }

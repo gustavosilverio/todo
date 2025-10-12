@@ -1,10 +1,10 @@
 "use client"
 
 import { Container } from "@/components/Container"
-import { ControledInput } from "@/components/ControledInput/ControledInput"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useRegister } from "./register.hook"
+import { ControledInput } from "@/components/ControledInput"
 
 export default function Register() {
 	const { control, onSubmit, createUserIsPending, loginUserIsPending } = useRegister()

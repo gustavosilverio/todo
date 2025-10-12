@@ -1,10 +1,10 @@
 "use client"
 
 import { Container } from "@/components/Container"
-import { ControledInput } from "@/components/ControledInput/ControledInput"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLogin } from "./login.hook"
+import { ControledInput } from "@/components/ControledInput"
 
 export default function Home() {
 	const { control, onSubmit, loginUserIsPending } = useLogin()
