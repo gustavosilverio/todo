@@ -7,7 +7,7 @@ import { api } from "../config/axios"
 import { revokeUser } from "@/api/controllers/auth"
 
 export const disconnectUser = async (toastDescription?: string, userId?: number) => {
-	revokeUser({ userId }).then(() => {
+	await revokeUser({ userId }).then(() => {
 		api.defaults.headers.Authorization = ""
 	})
 

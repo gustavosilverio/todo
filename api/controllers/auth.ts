@@ -9,13 +9,9 @@ import { useDispatch } from "react-redux"
 export const refreshTokenAsync = async (request: RefreshToken.Request) => {
 	if (!request.refreshToken || !request.accessToken) throw new Error("Insufficient data")
 
-	const { data: response } = await api.put<RefreshToken.Response>(
-		"/auth/refresh",
-		{
-			...request,
-		},
-		{ headers: { Authorization: request.accessToken } }
-	)
+	const { data: response } = await api.put<RefreshToken.Response>("/auth/refresh", {
+		...request,
+	})
 
 	if (!response.success) throw new Error("We were unsuccessful in our attempt to renew the token.")
 
