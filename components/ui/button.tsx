@@ -41,11 +41,11 @@ function Button({
 	size,
 	asChild = false,
 	loading = false,
+	disabled,
 	...props
 }: React.ComponentProps<"button"> &
 	VariantProps<typeof buttonVariants> & {
 		asChild?: boolean
-	} & {
 		loading?: boolean
 	}) {
 	const Comp = asChild ? Slot : "button"
@@ -54,6 +54,7 @@ function Button({
 		<Comp
 			data-slot="button"
 			className={cn(buttonVariants({ variant, size, className }), "relative")}
+			disabled={loading || disabled}
 			{...props}
 		>
 			<motion.span

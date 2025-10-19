@@ -7,3 +7,5 @@ export const todosSchema = z.object({
 		.optional()
 		.transform((value) => (value ? value : undefined)),
 })
+
+export type TodosSchema = z.infer<typeof todosSchema>

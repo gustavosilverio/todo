@@ -35,7 +35,6 @@ export const useTodos = () => {
 
 		reset()
 	})
-
 	return {
 		enableDescription,
 		setEnableDescription,

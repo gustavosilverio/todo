@@ -26,7 +26,7 @@ export namespace UpdateTodo {
 	export type Request = {
 		idTodo: number
 		name: string
-		description: string
+		description?: string | undefined
 	}
 	export type Response = CommonResponse<Todo>
 }
@@ -50,7 +50,7 @@ export type Todo = {
 	id: number
 	userId: number
 	name: string
-	description: string
+	description: string | undefined
 	isDone: boolean
 	createdAt: string
 	updatedAt: string

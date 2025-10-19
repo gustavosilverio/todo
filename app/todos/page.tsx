@@ -11,6 +11,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ControledInput } from "@/components/ControledInput"
 import { ControledTextarea } from "@/components/ControledTextarea/ControledTextarea"
 import { useDeleteTodo, useUpdateIsDoneTodo } from "@/api/controllers/todo"
+import { Edit } from "./Modals/Edit"
+import { useDataModal } from "@/lib/hooks/useDataModal"
+import { EditProps } from "./Modals/Edit/Edit.types"
 
 export default function Todos() {
 	const {
@@ -60,11 +63,11 @@ export default function Todos() {
 						/>
 					) : (
 						<Button
+							variant="link"
+							className="p-0 w-max"
 							onClick={() => {
 								setEnableDescription(true)
 							}}
-							variant="link"
-							className="p-0 w-max"
 						>
 							Description?
 						</Button>
@@ -96,6 +99,10 @@ export default function Todos() {
 }
 
 const Todo = ({ id, name, description, isDone }: TodoProps) => {
+	const { dataModais, toggleDataModal } = useDataModal({
+		edit: null as EditProps["data"] | null,
+	})
+
 	const { mutateAsync: deleteTodo, isPending: deleteTodoIsPending } = useDeleteTodo()
 
 	const { mutateAsync: updateIsDoneTodo, isPending: updateIsDoneTodoIsPending } = useUpdateIsDoneTodo()
@@ -107,35 +114,54 @@ const Todo = ({ id, name, description, isDone }: TodoProps) => {
 		})
 	}
 
+	const handleEdit = () => {
+		toggleDataModal("edit", {
+			open: true,
+			data: {
+				id,
+				description,
+				name,
+			},
+		})
+	}
+
 	return (
-		<div className="flex items-center gap-2 justify-between">
-			<Tooltip title={description}>
-				<p className={cn("truncate", { "line-through": isDone })}>{name}</p>
-			</Tooltip>
+		<>
+			<div className="flex items-center gap-2 justify-between">
+				<Tooltip title={description}>
+					<p className={cn("truncate", { "line-through": isDone })}>{name}</p>
+				</Tooltip>
 
-			<div className="flex gap-1">
-				<ActionButton
-					icon={<Pencil />}
-					onClick={() => {
-						console.log("edit")
-					}}
-				/>
+				<div className="flex gap-1">
+					<ActionButton
+						icon={<Pencil />}
+						onClick={handleEdit}
+					/>
 
-				<ActionButton
-					icon={isDone ? <X /> : <Check />}
-					onClick={handleChangeIsDone}
-					loading={updateIsDoneTodoIsPending}
-				/>
+					<ActionButton
+						icon={isDone ? <X /> : <Check />}
+						onClick={handleChangeIsDone}
+						loading={updateIsDoneTodoIsPending}
+					/>
 
-				<ActionButton
-					icon={<Trash2 />}
-					onClick={() => {
-						deleteTodo({ idTodo: id })
-					}}
-					loading={deleteTodoIsPending}
-				/>
+					<ActionButton
+						icon={<Trash2 />}
+						loading={deleteTodoIsPending}
+						onClick={() => {
+							deleteTodo({ idTodo: id })
+						}}
+					/>
+				</div>
 			</div>
-		</div>
+
+			<Edit
+				open={dataModais.edit.open}
+				data={dataModais.edit.data}
+				onClose={() => {
+					toggleDataModal("edit", { open: false })
+				}}
+			/>
+		</>
 	)
 }
 

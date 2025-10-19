@@ -1,7 +1,7 @@
 export type TodoProps = {
 	id: number
 	name: string
-	description: string
+	description: string | undefined
 	isDone: boolean
 }
 

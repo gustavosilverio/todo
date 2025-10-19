@@ -1,4 +1,4 @@
 export type TooltipProps = {
-	title: string
+	title: string | undefined
 	children: React.ReactNode
 }
