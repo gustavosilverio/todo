@@ -4,10 +4,11 @@ import { loginSchema } from "./login.schema"
 import { useLoginUser } from "@/api/controllers/auth"
 import { toast } from "sonner"
 import { useReduxSelector } from "@/lib/hooks/useReduxSelector"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
 
 export const useLogin = () => {
+	const [showPassword, setShowPassword] = useState(false)
 	const userCredentials = useReduxSelector("credentials")
 	const { mutateAsync: loginUserAsync, isPending: loginUserIsPending } = useLoginUser()
 
@@ -45,5 +46,7 @@ export const useLogin = () => {
 		control,
 		onSubmit,
 		loginUserIsPending,
+		showPassword,
+		setShowPassword,
 	}
 }

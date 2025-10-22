@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLogin } from "./login.hook"
 import { ControledInput } from "@/components/ControledInput"
+import { Eye, EyeClosed } from "lucide-react"
 
 export default function Home() {
-	const { control, onSubmit, loginUserIsPending } = useLogin()
+	const { control, onSubmit, loginUserIsPending, showPassword, setShowPassword } = useLogin()
 
 	return (
 		<Container.Centralized>
@@ -32,6 +33,18 @@ export default function Home() {
 						name="password"
 						label="Password"
 						placeholder="123456"
+						type={showPassword ? "text" : "password"}
+						endAdornment={
+							<Button
+								type="button"
+								variant="link"
+								onClick={() => {
+									setShowPassword((old) => !old)
+								}}
+							>
+								{showPassword ? <EyeClosed /> : <Eye />}
+							</Button>
+						}
 					/>
 
 					<Button

@@ -5,10 +5,12 @@ import { useCreateUser } from "@/api/controllers/user"
 import { toast } from "sonner"
 import { useLoginUser } from "@/api/controllers/auth"
 import { useReduxSelector } from "@/lib/hooks/useReduxSelector"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
 
 export const useRegister = () => {
+	const [showPassword, setShowPassword] = useState(false)
+
 	const userCredentials = useReduxSelector("credentials")
 	const { mutateAsync: createUserAsync, isPending: createUserIsPending } = useCreateUser()
 	const { mutateAsync: loginUserAsync, isPending: loginUserIsPending } = useLoginUser()
@@ -54,5 +56,7 @@ export const useRegister = () => {
 		onSubmit,
 		createUserIsPending,
 		loginUserIsPending,
+		showPassword,
+		setShowPassword,
 	}
 }

@@ -4,4 +4,6 @@ export type ControledInputProps<TFieldValues extends FieldValues> = Omit<React.C
 	label?: string
 	control: Control<TFieldValues>
 	name: Path<TFieldValues>
+	endAdornment?: React.ReactNode
+	startAdornment?: React.ReactNode
 }

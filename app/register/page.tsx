@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useRegister } from "./register.hook"
 import { ControledInput } from "@/components/ControledInput"
+import { Eye, EyeClosed } from "lucide-react"
 
 export default function Register() {
-	const { control, onSubmit, createUserIsPending, loginUserIsPending } = useRegister()
+	const { control, onSubmit, createUserIsPending, loginUserIsPending, showPassword, setShowPassword } = useRegister()
 
 	return (
 		<Container.Centralized>
@@ -39,6 +40,18 @@ export default function Register() {
 						name="password"
 						label="Password"
 						placeholder="123456"
+						type={showPassword ? "text" : "password"}
+						endAdornment={
+							<Button
+								type="button"
+								variant="link"
+								onClick={() => {
+									setShowPassword((old) => !old)
+								}}
+							>
+								{showPassword ? <EyeClosed /> : <Eye />}
+							</Button>
+						}
 					/>
 
 					<ControledInput
@@ -46,6 +59,18 @@ export default function Register() {
 						name="confirmPassword"
 						label="Confirm password"
 						placeholder="123456"
+						type={showPassword ? "text" : "password"}
+						endAdornment={
+							<Button
+								type="button"
+								variant="link"
+								onClick={() => {
+									setShowPassword((old) => !old)
+								}}
+							>
+								{showPassword ? <EyeClosed /> : <Eye />}
+							</Button>
+						}
 					/>
 
 					<Button
