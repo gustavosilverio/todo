@@ -1,4 +1,4 @@
-## This is a simple but robust todo app
+## This is a simple but very robust todo app
 
 Technologies used here:
 - nextjs
