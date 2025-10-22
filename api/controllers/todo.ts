@@ -87,7 +87,7 @@ export const useGetTodosByUserId = (request: GetTodosByUserId.Request) => {
 		queryKey: [TodoQueryKeys.GetTodosByUserId, request],
 		enabled: !!request.userId,
 		queryFn: async () => {
-			const { data } = await api.get<GetTodosByUserId.Response>("/todo", {
+			const { data } = await api.get<GetTodosByUserId.Response>("/todo/get-by-user-id", {
 				params: {
 					...request,
 				},
