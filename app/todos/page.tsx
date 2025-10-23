@@ -40,16 +40,15 @@ export default function Todos() {
 							control={control}
 							name="name"
 							placeholder="Buy more milk..."
-							className="h-12"
 						/>
 
 						<Button
 							type="submit"
 							variant="outline"
-							className="w-12 h-12"
+							className="w-9 h-w-9"
 							loading={createTodoIsPending}
 						>
-							<Plus className="size-8" />
+							<Plus className="size-6" />
 						</Button>
 					</div>
 
