@@ -23,7 +23,7 @@ export const Header = () => {
 	if (pathname !== "/todos") return
 
 	return (
-		<header className="flex items-center gap-2 w-dvw px-12 lg:px-36 py-8 justify-end">
+		<header className="flex items-center gap-2 px-12 lg:px-36 py-8 justify-end">
 			<Button
 				variant="outline"
 				onClick={() => {
