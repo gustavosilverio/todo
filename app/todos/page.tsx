@@ -93,6 +93,12 @@ export default function Todos() {
 					)}
 				</div>
 			</div>
+
+			<div className="fixed w-full h-10 backdrop-blur-sm bottom-0 rounded-t-sm sm:p-3 sm:rounded-md sm:w-auto sm:top-4 sm:left-4">
+				<div className="flex h-full items-center justify-center">
+					<p className="text-sm">All the to-dos are removed weekly</p>
+				</div>
+			</div>
 		</Container.Centralized>
 	)
 }
